@@ -16,9 +16,7 @@ final class LivewireComboboxServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('livewire-combobox')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasTranslations();
+            ->hasViews();
     }
 
     public function registeringPackage(): void
