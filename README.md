@@ -168,8 +168,94 @@ Select::make(...)
 
 ### selectRows()
 
-It is used to select the fields of the table that we want to show in the `array`.
+It is used to select the fields from the table that we want to load in the child element.
 
+## Customize the elements display
+
+The package uses **TailwindCSS** so the styles must be based on it. The structure of the elements is as follows:
+
+```html 
+<!-- Main container -->
+<div id="container">
+
+    <!-- Element 1 -->
+    <div id="element-container-1">
+        <label id="label-1"></label>
+        <select id="select-1"></select>
+    </div>
+
+    <!-- Element 2 -->
+    <div id="element-container-2">
+        <label id="label-2"></label>
+        <select id="select-2"></select>
+    </div>
+</div>
+```
+
+We can modify the styles of the *Main Container* from the component that we created at the beginning of the documentation, using the `$comboboxContainerClass`:
+
+```php 
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Livewire;
+
+use App\Models\Car;
+use App\Models\Extra;
+use App\Models\Option;
+use Daguilarm\LivewireCombobox\Components\ComboboxLivewireComponent;
+use Daguilarm\LivewireCombobox\Components\Fields\Select;
+use Daguilarm\LivewireCombobox\Contracts\Combobox;
+
+class ComboboxCars extends ComboboxLivewireComponent implements Combobox
+{
+    public string $comboboxContainerClass = 'flex p-2 m-2 bg-gray-100';
+
+    public function elements(): array
+    {
+        return [];
+    }
+}
+```
+
+To modify an element, we will have to do it directly from each of them, using the method `class()`:
+
+```php 
+Select::make('Cars', Car::class)
+    ->uriKey('key-for-car')
+    ->options(function($model) {
+        return $model
+            ->pluck('id', 'name')
+            ->toArray();
+    })
+    ->class(
+        container: 'p-4',
+        label: 'text-green-600',
+        field: 'text-lg',
+    ),
+```
+
+We can use the new functionality of **php 8** to modify only those parts that interest us, or we can use the method directly:
+
+```php 
+// Method 1
+Select::make(...)
+    ->class(
+        container: 'p-4',
+        field: 'text-lg',
+    ),
+
+// Method 2
+Select::make(...)
+    ->class('p-4', null, 'text-lg'),
+```
+
+The parameters order is:
+
+```php 
+class(?string $container = null, ?string $label = null, ?string $field = null)
+```
 
 ## Changelog
 

@@ -44,11 +44,11 @@ abstract class FieldComponent
     /**
      * Depending element base on uriKey.
      */
-    public function class(?string $container = null, ?string $field = null, ?string $label = null): self
+    public function class(?string $container = null, ?string $label = null, ?string $field = null): self
     {
-        $this->fieldCss = $field;
         $this->fieldContainerCss = $container;
         $this->labelCss = $label;
+        $this->fieldCss = $field;
 
         return $this;
     }
