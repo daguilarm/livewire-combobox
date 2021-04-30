@@ -22,9 +22,6 @@ abstract class ComboboxLivewireComponent extends Component
      */
     public array $comboboxValues = [];
 
-    /**
-     * @var string
-     */
     public string $comboboxContainerClass;
 
     /**
@@ -63,7 +60,7 @@ abstract class ComboboxLivewireComponent extends Component
     /**
      * Listener for element change on view.
      */
-    public function dependOn(string $uriKey)
+    public function dependOn(string $uriKey): void
     {
         $this->elements = $this->resolveElements($uriKey);
     }

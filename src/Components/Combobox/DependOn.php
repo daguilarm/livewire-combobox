@@ -24,7 +24,7 @@ trait DependOn
     {
         return collect($this->elements)
             // Set the parent element
-            ->filter(function($element) {
+            ->filter(function ($element) {
                 return ! Combobox::value($element, 'parentUriKey')
                     ? $this->resolveParentElement($element)
                     : $element;

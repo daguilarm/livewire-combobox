@@ -11,15 +11,11 @@ final class Combobox
 {
     /**
      * Get value from element.
-     *
-     * @param int | bool | float | string | null $value
-     *
-     * @return array | bool | int | float | string | null
      */
-    public function value(object | array $element, $value)
+    public function value(object | array $element, int | bool | float | string | null $value): array | bool | int | float | string | null
     {
         if (is_array($element)) {
-            return isset($element[$value]) ? $element[$value] : null;
+            return $element[$value] ?? null;
         }
 
         if (is_object($element)) {
