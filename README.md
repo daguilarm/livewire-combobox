@@ -1,4 +1,4 @@
-# A dynamic select for Laravel Livewire
+# A dynamic selects for Laravel Livewire
 
 ![Package Logo](https://banners.beyondco.de/A%20Combobox%20for%20Laravel%20Livewire.png?theme=light&packageManager=composer+require&packageName=daguilarm%2Flivewire-combobox&pattern=architect&style=style_1&description=An+infinite+dynamic+selects.&md=1&showWatermark=1&fontSize=100px&images=selector)
 
@@ -189,7 +189,7 @@ The package uses **TailwindCSS** so the styles must be based on it. The structur
         <label id="label-2"></label>
         <select id="select-2"></select>
     </div>
-    
+
 </div>
 ```
 
