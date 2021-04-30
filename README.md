@@ -59,7 +59,7 @@ class ComboboxCars extends ComboboxLivewireComponent implements Combobox
                 ->foreignKey('car_id')
                 ->selectRows('id', 'option'),
             Select::make('Extras for cars', Extra::class)
-                ->firstRemove()
+                ->firstRemoved()
                 ->uriKey('key-for-extras')
                 ->dependOn('key-for-options')
                 ->foreignKey('option_id')
@@ -92,6 +92,84 @@ Select::make('My label')->model(User::class);
 ### uriKey()
 
 This method is mandatory, it is used to define a unique key for the element.
+
+### options()
+
+It is used to add the values ​​that will be shown in the element **select**. We can directly add a `array` with the values, or define a `callback`. The two values ​​returned by the `array`: key and value, are shown as follows in the **Blade** template:
+
+```php 
+// The array
+[
+    1 => 'Car',
+    2 => 'Bike',
+    3 => 'Plane'
+]
+
+//Will be render as 
+<option value="1">Car</option>
+<option value="2">Bike</option>
+<option value="3">Plane</option>
+```
+
+Therefore, in the component example:
+
+```php 
+// The array
+Select::make(...)
+    ->options(function($model) {
+        return $model
+            ->pluck('id', 'name')
+            ->toArray();
+    })
+
+//Will be render as 
+<option value="id">name</option>
+```
+
+### firstRemoved()
+
+By default, each item will show one select field with a empty `option` element:
+
+```html 
+// The array
+<select>
+    <option></option>
+    ...
+</select>
+```
+
+If we want to remove it, we can add the method `firstRemoved()`.
+
+## Child elements
+
+These elements have their own methods, apart from those described above. 
+These child elements do not need the method `options()`, although it can be added if desired. The child specific methods are described below:
+
+### dependOn()
+
+With this method we define the parent element on which our child element depends. We must use the `uriKey` from the parent element. The basic structure of the method is:
+
+```php
+dependOn(?string $parentUriKey = null, ?string $foreignKey = null)
+```
+
+As can be seen, it admits a second value which is the *foreing key* that links the two models: **Parent** and **Child**. This second field can also be added in two ways:
+
+```php 
+// Option 1
+Select::make(...)
+    ->dependOn('key-for-options', 'option_id');
+
+// Option 2
+Select::make(...)
+    ->dependOn('key-for-options')
+    ->foreignKey('option_id');
+```
+
+### selectRows()
+
+It is used to select the fields of the table that we want to show in the `array`.
+
 
 ## Changelog
 

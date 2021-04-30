@@ -13,7 +13,7 @@ use Daguilarm\LivewireCombobox\Contracts\Field;
 final class Select extends FieldComponent implements Field
 {
     public string $type = 'select';
-    public bool $firstRemove = false;
+    public bool $firstRemoved = false;
 
     /**
      * @var array<Daguilarm\LivewireCombobox\Contracts\Field>
@@ -37,9 +37,9 @@ final class Select extends FieldComponent implements Field
     /**
      * Show or hide empty first element.
      */
-    public function firstRemove(bool $value = true): self
+    public function firstRemoved(bool $value = true): self
     {
-        $this->firstRemove = $value;
+        $this->firstRemoved = $value;
 
         return $this;
     }

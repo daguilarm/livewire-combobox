@@ -20,7 +20,7 @@
                     wire:change="$emit('dependOn', '{{ Combobox::value($element, 'uriKey') }}')"
                 >
                     {{-- Show or hide empty first element --}}
-                    @unless(Combobox::value($element, 'firstRemove'))
+                    @unless(Combobox::value($element, 'firstRemoved'))
                         <option></option>
                     @endunless
 
