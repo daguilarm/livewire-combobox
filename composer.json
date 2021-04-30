@@ -1,0 +1,64 @@
+{
+    "name": "daguilarm/livewire-combobox",
+    "description": "A Livewire select combobox for Laravel",
+    "keywords": [
+        "livewire",
+        "alpineJS",
+        "package",
+        "combobox",
+        "select",
+        "laravel",
+        "daguilarm"
+    ],
+    "homepage": "https://github.com/daguilarm/livewire-combobox",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Damián Aguilar",
+            "email": "damian.aguilarm@gmail.com",
+            "homepage": "https://daguilar.dev",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "livewire/livewire": "^2.3",
+        "mattlibera/livewire-flash": "^0.5.0",
+        "spatie/laravel-package-tools": "^1.6",
+        "symfony/http-kernel": "^5.0"
+    },
+    "require-dev": {
+        "calebporzio/sushi": "^2.2",
+        "nunomaduro/phpinsights": "dev-master",
+        "orchestra/testbench": "^6.13",
+        "phpunit/phpunit": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Daguilarm\\LivewireCombobox\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Daguilarm\\LivewireCombobox\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Daguilarm\\LivewireCombobox\\LivewireComboboxServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

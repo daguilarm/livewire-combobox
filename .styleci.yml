@@ -1,0 +1,13 @@
+risky: false
+version: 8
+preset: laravel
+finder:
+  exclude:
+    - "modules"
+    - "node_modules"
+    - "storage"
+    - "vendor"
+  name: "*.php"
+  not-name:
+    - "*.blade.php"
+    - "_ide_helper.php"
