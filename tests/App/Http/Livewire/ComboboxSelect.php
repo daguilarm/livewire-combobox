@@ -34,7 +34,7 @@ class ComboboxSelect extends ComboboxLivewireComponent implements Combobox
             Select::make('Cars callable', Car::class)
                 ->uriKey('key-for-car-callable')
                 ->dependOn('key-for-car', 'cars_id')
-                ->options(function($model) {
+                ->options(function ($model) {
                     return $model
                         ->pluck('id', 'name')
                         ->toArray();

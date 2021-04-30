@@ -18,11 +18,11 @@ final class Combobox
      */
     public function value(object | array $element, $value)
     {
-        if(is_array($element)) {
+        if (is_array($element)) {
             return isset($element[$value]) ? $element[$value] : null;
         }
 
-        if(is_object($element)) {
+        if (is_object($element)) {
             return $element?->{$value} ?? null;
         }
 
