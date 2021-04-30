@@ -229,11 +229,7 @@ Select::make('Cars', Car::class)
             ->pluck('id', 'name')
             ->toArray();
     })
-    ->class(
-        container: 'p-4',
-        label: 'text-green-600',
-        field: 'text-lg',
-    ),
+    ->class('p-4', 'text-green-600', 'text-lg'),
 ```
 
 We can use the new functionality of **php 8** to modify only those parts that interest us, or we can use the method directly:
