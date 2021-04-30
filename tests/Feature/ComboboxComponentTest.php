@@ -4,9 +4,6 @@ namespace Daguilarm\LivewireCombobox\Tests\Feature;
 
 use Daguilarm\LivewireCombobox\Tests\App\Http\Livewire\ComboboxSelect;
 use Daguilarm\LivewireCombobox\Tests\TestCase;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
-use Livewire\Livewire;
 
 // test --filter=ComboboxComponentTest
 class ComboboxComponentTest extends TestCase
@@ -26,7 +23,7 @@ class ComboboxComponentTest extends TestCase
 
         // Testing the number of parent elements
         $totalParanetElements = collect($combobox->elements())
-            ->filter(function($element) {
+            ->filter(function ($element) {
                 return ! isset($element->parentUriKey);
             })->count();
 

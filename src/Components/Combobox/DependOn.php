@@ -15,7 +15,6 @@ trait DependOn
     public int $elementPositionDelete = 0;
     public int $maxRangeForWildElements = 2;
 
-
     /**
      * Resolve all the elements.
      *
@@ -24,10 +23,9 @@ trait DependOn
     public function resolveElements(string $uriKey): array
     {
         return collect($this->elements)
-            ->map(function($element) use ($uriKey)
-            {
+            ->map(function ($element) use ($uriKey) {
                 // Set the parent element
-                if (!Combobox::value($element, 'parentUriKey')) {
+                if (! Combobox::value($element, 'parentUriKey')) {
                     return $this->resolveParentElement($element);
                 }
 
@@ -37,7 +35,7 @@ trait DependOn
                 }
 
                 // Update childs if has a parent
-                if($this->childElementHasParent($element, $uriKey)) {
+                if ($this->childElementHasParent($element, $uriKey)) {
                     // Get child element from parent
                     $element = $this->getChildElementFromParent($element, $uriKey);
 
@@ -145,12 +143,12 @@ trait DependOn
     private function resolveChildElement(array $element): array
     {
         // Set element position if array
-        if(is_array($element)) {
+        if (is_array($element)) {
             $element['position'] = $this->elementPosition;
         }
 
         // Set element position if object (for testing)
-        if(is_object($element)) {
+        if (is_object($element)) {
             $element->position = $this->elementPosition;
         }
 

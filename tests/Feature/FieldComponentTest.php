@@ -2,12 +2,9 @@
 
 namespace Daguilarm\LivewireCombobox\Tests\Feature;
 
-use Daguilarm\LivewireCombobox\Components\ComboboxComponent;
 use Daguilarm\LivewireCombobox\Components\Fields\Select;
-use Daguilarm\LivewireCombobox\Tests\App\Http\Livewire\ComboboxSelect;
 use Daguilarm\LivewireCombobox\Tests\App\Models\Car;
 use Daguilarm\LivewireCombobox\Tests\TestCase;
-use Livewire\Livewire;
 
 // test --filter=FieldComponentTest
 class FieldComponentTest extends TestCase
@@ -47,7 +44,7 @@ class FieldComponentTest extends TestCase
     {
         $model = Car::pluck('id', 'name')->toArray();
         $select = Select::make('Cars', Car::class)
-                ->options(function($model) {
+                ->options(function ($model) {
                     return $model
                         ->pluck('id', 'name')
                         ->toArray();

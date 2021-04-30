@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Components;
 
 use Daguilarm\LivewireCombobox\Components\Combobox\DependOn;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
 
