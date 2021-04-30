@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Components;
 
 use Daguilarm\LivewireCombobox\Components\Combobox\DependOn;
+use Daguilarm\LivewireCombobox\Components\Combobox\DependOnChild;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -13,7 +14,8 @@ use Livewire\Component;
  */
 abstract class ComboboxLivewireComponent extends Component
 {
-    use DependOn;
+    use DependOn,
+        DependOnChild;
 
     /**
      * @var array<string>
