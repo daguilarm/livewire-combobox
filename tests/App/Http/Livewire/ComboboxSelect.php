@@ -22,13 +22,11 @@ class ComboboxSelect extends ComboboxLivewireComponent implements Combobox
             // Testing dependOn attributes
             Select::make('Options 1', Option::class)
                 ->uriKey('key-for-option-1')
-                ->optionsEmpty()
                 ->dependOn('key-for-car')
                 ->foreignKey('cars_id'),
             // Testing foreignKey as value in dependOn
             Select::make('Options 2', Option::class)
                 ->uriKey('key-for-option-2')
-                ->optionsEmpty()
                 ->dependOn('key-for-car', 'cars_id'),
             // Testing options with callable
             Select::make('Cars callable', Car::class)

@@ -59,7 +59,6 @@ class FieldComponentTest extends TestCase
     {
         $select_1 = Select::make('Options 2', Option::class)
                 ->uriKey('key-for-option-2')
-                ->optionsEmpty()
                 ->dependOn('key-for-car', 'cars_id');
 
         $select_2 = Select::make('Options 2', Option::class)
