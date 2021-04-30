@@ -67,7 +67,7 @@ trait DependOn
     /**
      * Determines if the current position is within the delete margin.
      */
-    private function resolveElementPosition()
+    private function resolveElementPosition(): bool
     {
         // Determines if the current position is within the range
         $deletePosition = $this->elementPositionDelete > $this->elementPosition;

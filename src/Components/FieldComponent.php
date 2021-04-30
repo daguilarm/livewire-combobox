@@ -13,19 +13,17 @@ abstract class FieldComponent
     public ?string $fieldCss = null;
     public ?string $fieldContainerCss = null;
     public ?string $labelCss = null;
+
     // Base values
     public string $label;
     public string $childTableRowLabel;
     public string $childTableRowValue;
     public string $type;
     public string $uriKey;
-
     public ?string $model;
     public ?string $foreignKey = null;
     public ?string $parentUriKey = null;
-
     public int $position = 0;
-
     public int | float | string | null $defaultValue = null;
 
     /**
