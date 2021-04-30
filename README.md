@@ -131,7 +131,7 @@ Select::make(...)
 By default, each item will show one select field with a empty `option` element:
 
 ```html 
-// The array
+// Element
 <select>
     <option></option>
     ...
@@ -170,7 +170,7 @@ Select::make(...)
 
 It is used to select the fields from the table that we want to load in the child element.
 
-## Customize the elements display
+## Customize the display of elements
 
 The package uses **TailwindCSS** so the styles must be based on it. The structure of the elements is as follows:
 
