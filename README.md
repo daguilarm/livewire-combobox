@@ -189,6 +189,7 @@ The package uses **TailwindCSS** so the styles must be based on it. The structur
         <label id="label-2"></label>
         <select id="select-2"></select>
     </div>
+    
 </div>
 ```
 
