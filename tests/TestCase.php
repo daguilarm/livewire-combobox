@@ -10,8 +10,7 @@ use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 
 /**
- * @see https://github.com/livewire/livewire/blob/master/tests/Browser/SupportsSafari.php
- * @see https://github.com/appstract/laravel-dusk-safari
+ * @see https://github.com/livewire/livewire/blob/master/tests/Browser/TestCase.php
  */
 class TestCase extends BaseTestCase
 {
@@ -65,16 +64,6 @@ class TestCase extends BaseTestCase
     {
         // Setup the application
         $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-        $app['config']->set('filesystems.disks.dusk-downloads', [
-            'driver' => 'local',
-            'root' => __DIR__.'/downloads',
-        ]);
     }
 
     /**
