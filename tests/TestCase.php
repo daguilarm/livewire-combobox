@@ -31,16 +31,15 @@ class TestCase extends BaseTestCase
 
         // Define the testing routes
         $this->tweakApplication(function () {
-
+            // Enable debug
             config()->set('app.debug', true);
-
+            // Configure the view folder
             app('config')->set('view.paths', [
                 __DIR__.'/../tests/Browser/resources/views',
                 resource_path('views'),
             ]);
-
+            // CSRF hack
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
-
             //Routes for testing
             Route::get('/testing', function () {
                 return view('select');
