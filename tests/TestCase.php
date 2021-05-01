@@ -17,6 +17,9 @@ class TestCase extends BaseTestCase
 {
     use DuskElements;
 
+    /**
+     * Setup for testing.
+     */
     public function setUp(): void
     {
         // DuskOptions::withoutUI();
@@ -47,7 +50,7 @@ class TestCase extends BaseTestCase
 
     /**
      * Load the Service Providers.
-    */
+     */
     protected function getPackageProviders($app)
     {
         return [
@@ -75,6 +78,9 @@ class TestCase extends BaseTestCase
         ]);
     }
 
+    /**
+     * Resolve the application http kernel.
+     */
     protected function resolveApplicationHttpKernel($app)
     {
         $app->singleton('Illuminate\Contracts\Http\Kernel', '\Daguilarm\LivewireCombobox\Tests\HttpKernel');
