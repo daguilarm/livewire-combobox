@@ -19,7 +19,7 @@ class ComboboxComponentTest extends TestCase
         $combobox = new ComboboxSelects();
 
         // Testing the number of elements
-        $this->assertEquals(count($combobox->elements()), 2);
+        $this->assertEquals(count($combobox->elements()), 3);
 
         // Testing the number of parent elements
         $totalParanetElements = collect($combobox->elements())

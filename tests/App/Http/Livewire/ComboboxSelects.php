@@ -18,12 +18,22 @@ class ComboboxSelects extends ComboboxLivewireComponent implements Combobox
             // Testing basic attributes
             Select::make('Cars', Car::class)
                 ->uriKey('key-for-car')
-                ->options([1 => 'one', 2 => 'two', 3 => 'three']),
+                ->options(function($model) {
+                    return $model->pluck('name', 'id')->toArray();
+                }),
             // Testing dependOn attributes
-            Select::make('Options 1', Option::class)
-                ->uriKey('key-for-option-1')
+            Select::make('Options for cars')
+                ->uriKey('key-for-options')
+                ->model(Option::class)
                 ->dependOn('key-for-car')
-                ->foreignKey('cars_id'),
+                ->foreignKey('car_id')
+                ->selectRows('id', 'option'),
+            Select::make('Extras for cars', Extra::class)
+                ->firstRemoved()
+                ->uriKey('key-for-extras')
+                ->dependOn('key-for-options')
+                ->foreignKey('option_id')
+                ->selectRows('id', 'extra'),
         ];
     }
 }

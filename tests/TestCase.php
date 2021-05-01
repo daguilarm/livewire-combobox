@@ -5,38 +5,50 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Tests;
 
 use Daguilarm\LivewireCombobox\LivewireComboboxServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\File;
+use Daguilarm\LivewireCombobox\Tests\DuskElements;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\TestCase as BaseTestCase;
+use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 
+/**
+ * @see https://github.com/livewire/livewire/blob/master/tests/Browser/SupportsSafari.php
+ * @see https://github.com/appstract/laravel-dusk-safari
+ */
 class TestCase extends BaseTestCase
 {
-    use RefreshDatabase;
+    use DuskElements;
 
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
+    public function setUp(): void
     {
-        // Clean up the test
-        $this->afterApplicationCreated(function () {
-            $this->makeACleanSlate();
-        });
-
-        $this->beforeApplicationDestroyed(function () {
-            $this->makeACleanSlate();
-        });
+        // DuskOptions::withoutUI();
+        if (isset($_SERVER['CI'])) {
+            DuskOptions::withoutUI();
+        }
 
         parent::setUp();
+
+        // Define the testing routes
+        $this->tweakApplication(function () {
+
+            config()->set('app.debug', true);
+
+            app('config')->set('view.paths', [
+                __DIR__.'/../tests/Browser/resources/views',
+                resource_path('views'),
+            ]);
+
+            app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
+
+            //Routes for testing
+            Route::get('/testing', function() {
+                return view('select');
+            });
+        });
     }
 
     /**
-     * Load the service providers.
-     */
+     * Load the Service Providers
+    */
     protected function getPackageProviders($app)
     {
         return [
@@ -46,17 +58,11 @@ class TestCase extends BaseTestCase
     }
 
     /**
-     * Setup the testing environment.
+     * Setup environment
      */
-    public function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app)
     {
         // Setup the application
-        $app['config']->set('view.paths', [
-            __DIR__.'/../tests/_Resources/_Views/',
-            resource_path('views'),
-        ]);
-        $app['config']->set('auth.providers.users.model', User::class);
-        $app['config']->set('session.driver', 'file');
         $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
@@ -64,60 +70,9 @@ class TestCase extends BaseTestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-    }
-
-    /**
-     * Clean up for the test.
-     */
-    public function makeACleanSlate()
-    {
-        Artisan::call('view:clear');
-
-        File::deleteDirectory($this->livewireViewsPath());
-        File::deleteDirectory($this->livewireClassesPath());
-        File::deleteDirectory($this->livewireTestsPath());
-        File::delete(app()->bootstrapPath('cache/livewire-components.php'));
-    }
-
-    /**
-     * Get all the dusk attributes.
-     */
-    public function getDuskAttributes($html)
-    {
-        preg_match_all('/dusk="(.*)"/', $html, $results);
-
-        return $results[1];
-    }
-
-    /**
-     * Swap HTTP Kernel for application bootstrap.
-     */
-    protected function resolveApplicationHttpKernel($app)
-    {
-        $app->singleton('Illuminate\Contracts\Http\Kernel', 'Daguilarm\LivewireCombobox\Tests\HttpKernel');
-    }
-
-    /**
-     * Set the path for the livewire classes.
-     */
-    protected function livewireClassesPath($path = '')
-    {
-        return app_path('Http/Livewire'.($path ? '/'.$path : ''));
-    }
-
-    /**
-     * Set the path for the livewire views.
-     */
-    protected function livewireViewsPath($path = '')
-    {
-        return resource_path('views').'/livewire'.($path ? '/'.$path : '');
-    }
-
-    /**
-     * Set the path for the livewire tests.
-     */
-    protected function livewireTestsPath($path = '')
-    {
-        return base_path('tests/Feature/Livewire'.($path ? '/'.$path : ''));
+        $app['config']->set('filesystems.disks.dusk-downloads', [
+            'driver' => 'local',
+            'root' => __DIR__.'/downloads',
+        ]);
     }
 }
