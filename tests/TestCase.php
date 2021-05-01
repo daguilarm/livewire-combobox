@@ -40,14 +40,14 @@ class TestCase extends BaseTestCase
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
 
             //Routes for testing
-            Route::get('/testing', function() {
+            Route::get('/testing', function () {
                 return view('select');
             });
         });
     }
 
     /**
-     * Load the Service Providers
+     * Load the Service Providers.
     */
     protected function getPackageProviders($app)
     {
@@ -58,7 +58,7 @@ class TestCase extends BaseTestCase
     }
 
     /**
-     * Setup environment
+     * Setup environment.
      */
     protected function getEnvironmentSetUp($app)
     {

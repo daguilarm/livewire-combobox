@@ -18,7 +18,7 @@ class ComboboxSelects extends ComboboxLivewireComponent implements Combobox
             // Testing basic attributes
             Select::make('Cars', Car::class)
                 ->uriKey('key-for-car')
-                ->options(function($model) {
+                ->options(function ($model) {
                     return $model->pluck('name', 'id')->toArray();
                 }),
             // Testing dependOn attributes
