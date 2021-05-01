@@ -5,23 +5,26 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Tests;
 
 use Daguilarm\LivewireCombobox\LivewireComboboxServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Laravel\Dusk\Browser;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\TestCase as BaseTestCase;
+use Livewire\Macros\DuskBrowserMacros;
+use Orchestra\Testbench\Dusk\TestCase;
 
-class TestCase extends BaseTestCase
+class BrowserTestCase extends TestCase
 {
-    use RefreshDatabase;
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
+    public function setUp(): void
     {
+        // DuskOptions::withoutUI();
+        if (isset($_SERVER['CI'])) {
+            DuskOptions::withoutUI();
+        }
+
+        Browser::mixin(new DuskBrowserMacros);
+
         // Clean up the test
         $this->afterApplicationCreated(function () {
             $this->makeACleanSlate();
@@ -32,11 +35,18 @@ class TestCase extends BaseTestCase
         });
 
         parent::setUp();
+
+        $this->tweakApplication(function () {
+            //Routes for testing
+            Route::get('/testing', function() {
+                return view('select');
+            });
+        });
     }
 
     /**
-     * Load the service providers.
-     */
+     * Load the Service Providers
+    */
     protected function getPackageProviders($app)
     {
         return [
@@ -46,13 +56,13 @@ class TestCase extends BaseTestCase
     }
 
     /**
-     * Setup the testing environment.
+     * Setup environment
      */
-    public function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app)
     {
         // Setup the application
         $app['config']->set('view.paths', [
-            __DIR__.'/../tests/_Resources/_Views/',
+            __DIR__.'/../tests/Browser/resources/views',
             resource_path('views'),
         ]);
         $app['config']->set('auth.providers.users.model', User::class);

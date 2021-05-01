@@ -10,7 +10,7 @@ use Daguilarm\LivewireCombobox\Contracts\Combobox;
 use Daguilarm\LivewireCombobox\Tests\App\Models\Car;
 use Daguilarm\LivewireCombobox\Tests\App\Models\Option;
 
-class ComboboxSelect extends ComboboxLivewireComponent implements Combobox
+class ComboboxSelects extends ComboboxLivewireComponent implements Combobox
 {
     public function elements(): array
     {
@@ -24,19 +24,6 @@ class ComboboxSelect extends ComboboxLivewireComponent implements Combobox
                 ->uriKey('key-for-option-1')
                 ->dependOn('key-for-car')
                 ->foreignKey('cars_id'),
-            // Testing foreignKey as value in dependOn
-            Select::make('Options 2', Option::class)
-                ->uriKey('key-for-option-2')
-                ->dependOn('key-for-car', 'cars_id'),
-            // Testing options with callable
-            Select::make('Cars callable', Car::class)
-                ->uriKey('key-for-car-callable')
-                ->dependOn('key-for-car', 'cars_id')
-                ->options(function ($model) {
-                    return $model
-                        ->pluck('id', 'name')
-                        ->toArray();
-                }),
         ];
     }
 }

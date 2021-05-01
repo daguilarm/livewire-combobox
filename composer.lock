@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1324ff49ae66b56a3cc623d3495a9800",
+    "content-hash": "fda36c8713791e68fb34071bb05856d6",
     "packages": [
         {
             "name": "brick/math",
@@ -5414,6 +5414,122 @@
             "time": "2020-05-27T16:41:55+00:00"
         },
         {
+            "name": "konsulting/project-root",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konsulting/project-root.git",
+                "reference": "3e33eddad57ad01a530e59733855a91a25d94495"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konsulting/project-root/zipball/3e33eddad57ad01a530e59733855a91a25d94495",
+                "reference": "3e33eddad57ad01a530e59733855a91a25d94495",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0 | ^6.0 | ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Konsulting\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Keoghan Litchfield",
+                    "email": "keoghan@klever.co.uk"
+                }
+            ],
+            "description": "A simple package to determine the working root directory for a composer dependency",
+            "support": {
+                "issues": "https://github.com/konsulting/project-root/issues",
+                "source": "https://github.com/konsulting/project-root/tree/master"
+            },
+            "time": "2019-04-16T07:29:33+00:00"
+        },
+        {
+            "name": "laravel/dusk",
+            "version": "v6.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/dusk.git",
+                "reference": "45b55fa20321086c4f8cc4e712cbe54db644e21c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/45b55fa20321086c4f8cc4e712cbe54db644e21c",
+                "reference": "45b55fa20321086c4f8cc4e712cbe54db644e21c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-zip": "*",
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "nesbot/carbon": "^2.0",
+                "php": "^7.2|^8.0",
+                "php-webdriver/webdriver": "^1.9.0",
+                "symfony/console": "^4.3|^5.0",
+                "symfony/finder": "^4.3|^5.0",
+                "symfony/process": "^4.3|^5.0",
+                "vlucas/phpdotenv": "^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^4.16|^5.17.1|^6.12.1",
+                "phpunit/phpunit": "^7.5.15|^8.4|^9.0"
+            },
+            "suggest": {
+                "ext-pcntl": "Used to gracefully terminate Dusk when tests are running."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Dusk\\DuskServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Dusk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Dusk provides simple end-to-end testing and browser automation.",
+            "keywords": [
+                "laravel",
+                "testing",
+                "webdriver"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/dusk/issues",
+                "source": "https://github.com/laravel/dusk/tree/v6.15.0"
+            },
+            "time": "2021-04-06T14:14:57+00:00"
+        },
+        {
             "name": "league/container",
             "version": "3.3.5",
             "source": {
@@ -5717,6 +5833,77 @@
             "time": "2021-04-29T06:43:47+00:00"
         },
         {
+            "name": "orchestra/dusk-updater",
+            "version": "v1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestral/dusk-updater.git",
+                "reference": "1432ad0c11c8a2ca5f096a0002b11400c1de940d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orchestral/dusk-updater/zipball/1432ad0c11c8a2ca5f096a0002b11400c1de940d",
+                "reference": "1432ad0c11c8a2ca5f096a0002b11400c1de940d",
+                "shasum": ""
+            },
+            "require": {
+                "composer/semver": "^1.5 || ^3.0",
+                "ext-openssl": "*",
+                "ext-zip": "*",
+                "symfony/console": "^4.0 || ^5.0",
+                "symfony/polyfill-ctype": "^1.9",
+                "symfony/process": "^4.2 || ^5.0"
+            },
+            "require-dev": {
+                "laravel/dusk": "^4.0 || ^5.0 || ^6.0",
+                "phpunit/phpunit": "^7.5 || ^8.4 || ^9.0"
+            },
+            "bin": [
+                "dusk-updater"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Orchestra\\DuskUpdater\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                },
+                {
+                    "name": "Mior Muhammad Zaki",
+                    "email": "crynobone@gmail.com"
+                }
+            ],
+            "description": "Updater for Laravel Dusk ChromeDriver binaries",
+            "support": {
+                "issues": "https://github.com/orchestral/dusk-updater/issues",
+                "source": "https://github.com/orchestral/dusk-updater/tree/v1.4.3"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/crynobone",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://liberapay.com/crynobone",
+                    "type": "liberapay"
+                }
+            ],
+            "time": "2021-03-24T11:44:17+00:00"
+        },
+        {
             "name": "orchestra/testbench",
             "version": "v6.17.0",
             "source": {
@@ -5867,6 +6054,75 @@
                 }
             ],
             "time": "2021-04-21T02:44:17+00:00"
+        },
+        {
+            "name": "orchestra/testbench-dusk",
+            "version": "v6.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestral/testbench-dusk.git",
+                "reference": "5be1f23f34714695189a2a6f928a217387080efb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orchestral/testbench-dusk/zipball/5be1f23f34714695189a2a6f928a217387080efb",
+                "reference": "5be1f23f34714695189a2a6f928a217387080efb",
+                "shasum": ""
+            },
+            "require": {
+                "konsulting/project-root": "^1.1",
+                "laravel/dusk": "^6.14",
+                "opis/closure": "^3.4.2",
+                "orchestra/dusk-updater": "^1.4.3",
+                "orchestra/testbench": "^6.17",
+                "php": "^7.3 || ^8.0",
+                "php-webdriver/webdriver": "^1.7"
+            },
+            "require-dev": {
+                "laravel/laravel": "8.x-dev",
+                "orchestra/canvas": "^6.1"
+            },
+            "bin": [
+                "testbench-dusk"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Orchestra\\Testbench\\Dusk\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Keoghan Litchfield",
+                    "email": "keoghan@klever.co.uk",
+                    "homepage": "https://klever.co.uk",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mior Muhammad Zaki",
+                    "email": "crynobone@gmail.com",
+                    "homepage": "https://github.com/crynobone",
+                    "role": "Organization Maintainer"
+                }
+            ],
+            "description": "Laravel Dusk Testing Helper for Packages Development",
+            "support": {
+                "issues": "https://github.com/orchestral/testbench-dusk/issues",
+                "source": "https://github.com/orchestral/testbench-dusk/tree/v6.17.0"
+            },
+            "time": "2021-04-06T12:33:35+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -6090,6 +6346,77 @@
                 "source": "https://github.com/php-parallel-lint/PHP-Parallel-Lint/tree/v1.3.0"
             },
             "time": "2021-04-07T14:42:48+00:00"
+        },
+        {
+            "name": "php-webdriver/webdriver",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-webdriver/php-webdriver.git",
+                "reference": "cd9290b95b7651d495bd69253d6e3ef469a7f211"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-webdriver/php-webdriver/zipball/cd9290b95b7651d495bd69253d6e3ef469a7f211",
+                "reference": "cd9290b95b7651d495bd69253d6e3ef469a7f211",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-zip": "*",
+                "php": "^5.6 || ~7.0 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.12",
+                "symfony/process": "^2.8 || ^3.1 || ^4.0 || ^5.0"
+            },
+            "replace": {
+                "facebook/webdriver": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "ondram/ci-detector": "^2.1 || ^3.5 || ^4.0",
+                "php-coveralls/php-coveralls": "^2.4",
+                "php-mock/php-mock-phpunit": "^1.1 || ^2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpunit/phpunit": "^5.7 || ^7 || ^8 || ^9",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symfony/var-dumper": "^3.3 || ^4.0 || ^5.0"
+            },
+            "suggest": {
+                "ext-SimpleXML": "For Firefox profile creation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\WebDriver\\": "lib/"
+                },
+                "files": [
+                    "lib/Exception/TimeoutException.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP client for Selenium WebDriver. Previously facebook/webdriver.",
+            "homepage": "https://github.com/php-webdriver/php-webdriver",
+            "keywords": [
+                "Chromedriver",
+                "geckodriver",
+                "php",
+                "selenium",
+                "webdriver"
+            ],
+            "support": {
+                "issues": "https://github.com/php-webdriver/php-webdriver/issues",
+                "source": "https://github.com/php-webdriver/php-webdriver/tree/1.10.0"
+            },
+            "time": "2021-02-25T13:38:09+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
