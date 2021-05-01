@@ -13,14 +13,20 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Laravel\Dusk\Browser;
+use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Livewire\Macros\DuskBrowserMacros;
 use Orchestra\Testbench\Dusk\Foundation\Console\DuskCommand;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
-use Orchestra\Testbench\Dusk\TestCase;
+use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 use Psy\Shell;
 
-class BrowserTestCase extends TestCase
+/**
+ * @see https://github.com/livewire/livewire/blob/master/tests/Browser/SupportsSafari.php
+ * @see https://github.com/appstract/laravel-dusk-safari
+ */
+class BrowserTestCase extends BaseTestCase
 {
     use SupportsSafari;
 
@@ -46,12 +52,33 @@ class BrowserTestCase extends TestCase
 
         // Define the testing routes
         $this->tweakApplication(function () {
+
+            config()->set('app.debug', true);
+
+            app('config')->set('view.paths', [
+                __DIR__.'/../tests/Browser/resources/views',
+                resource_path('views'),
+            ]);
+
+            app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
+
             //Routes for testing
             Route::get('/testing', function() {
                 return view('select');
             });
         });
     }
+
+    protected function tearDown(): void
+    {
+        $this->removeApplicationTweaks();
+
+        parent::tearDown();
+    }
+
+    // We don't want to deal with screenshots or console logs.
+    protected function storeConsoleLogsFor($browsers) {}
+    protected function captureFailuresFor($browsers) {}
 
     /**
      * Load the Service Providers
@@ -70,11 +97,17 @@ class BrowserTestCase extends TestCase
     protected function getEnvironmentSetUp($app)
     {
         // Setup the application
-        $app['config']->set('view.paths', [
-            __DIR__.'/../tests/Browser/resources/views',
-            resource_path('views'),
-        ]);
         $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
+        $app['config']->set('database.default', 'testbench');
+        $app['config']->set('database.connections.testbench', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
+        $app['config']->set('filesystems.disks.dusk-downloads', [
+            'driver' => 'local',
+            'root' => __DIR__.'/downloads',
+        ]);
     }
 
     /**
@@ -100,42 +133,42 @@ class BrowserTestCase extends TestCase
         return $results[1];
     }
 
-    protected function driver(): RemoteWebDriver
+   protected function driver(): RemoteWebDriver
+   {
+       $options = DuskOptions::getChromeOptions();
+
+       $options->setExperimentalOption('prefs', [
+           'download.default_directory' => __DIR__.'/downloads',
+       ]);
+
+       return static::$useSafari
+           ? RemoteWebDriver::create(
+               'http://localhost:9515', DesiredCapabilities::safari()
+           )
+           : RemoteWebDriver::create(
+               'http://localhost:9515',
+               DesiredCapabilities::chrome()->setCapability(
+                   ChromeOptions::CAPABILITY,
+                   $options
+               )
+           );
+   }
+
+   public function browse(Closure $callback)
     {
-        $options = DuskOptions::getChromeOptions();
+      parent::browse(function (...$browsers) use ($callback) {
+          try {
+              $callback(...$browsers);
+          } catch (Exception $e) {
+              if (DuskOptions::hasUI()) $this->breakIntoATinkerShell($browsers, $e);
 
-        $options->setExperimentalOption('prefs', [
-            'download.default_directory' => __DIR__.'/downloads',
-        ]);
+              throw $e;
+          } catch (Throwable $e) {
+              if (DuskOptions::hasUI()) $this->breakIntoATinkerShell($browsers, $e);
 
-        return static::$useSafari
-            ? RemoteWebDriver::create(
-                'http://localhost:9515', DesiredCapabilities::safari()
-            )
-            : RemoteWebDriver::create(
-                'http://localhost:9515',
-                DesiredCapabilities::chrome()->setCapability(
-                    ChromeOptions::CAPABILITY,
-                    $options
-                )
-            );
-    }
-
-    public function browse(Closure $callback)
-    {
-        parent::browse(function (...$browsers) use ($callback) {
-            try {
-                $callback(...$browsers);
-            } catch (Exception $e) {
-                if (DuskOptions::hasUI()) $this->breakIntoATinkerShell($browsers, $e);
-
-                throw $e;
-            } catch (Throwable $e) {
-                if (DuskOptions::hasUI()) $this->breakIntoATinkerShell($browsers, $e);
-
-                throw $e;
-            }
-        });
+              throw $e;
+          }
+      });
     }
 
     public function breakIntoATinkerShell($browsers, $e)

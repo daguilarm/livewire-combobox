@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Daguilarm\LivewireCombobox\Tests;
 
-// Thanks to https://github.com/appstract/laravel-dusk-safari for most of this source.
+/**
+ * @see https://github.com/livewire/livewire/blob/master/tests/Browser/SupportsSafari.php
+ * @see https://github.com/appstract/laravel-dusk-safari
+ */
 trait SupportsSafari
 {
     protected static $safariProcess;
 
-    /** @beforeClass */
+    /**
+     * Before the class
+     */
     public static function prepare()
     {
         if (static::$useSafari) {
@@ -19,11 +24,17 @@ trait SupportsSafari
         }
     }
 
+    /**
+     * Only on chrome.
+     */
     public function onlyRunOnChrome()
     {
         static::$useSafari && $this->markTestSkipped();
     }
 
+    /**
+     * Safari driver.
+     */
     public static function startSafariDriver()
     {
         static::$safariProcess = new \Symfony\Component\Process\Process([
