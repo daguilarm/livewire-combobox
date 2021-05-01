@@ -7,10 +7,11 @@ namespace Daguilarm\LivewireCombobox\Tests;
 use Closure;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 
-trait DuskElements {
+trait DuskElements
+{
     /**
      * We don't want to deal with screenshots or console logs.
-    */
+     */
     protected function storeConsoleLogsFor($browsers)
     {
     }
@@ -21,15 +22,19 @@ trait DuskElements {
 
     public function browse(Closure $callback)
     {
-       parent::browse(function (...$browsers) use ($callback) {
+        parent::browse(function (...$browsers) use ($callback) {
             try {
                 $callback(...$browsers);
             } catch (Exception $e) {
-                if (DuskOptions::hasUI()) $this->breakIntoATinkerShell($browsers, $e);
+                if (DuskOptions::hasUI()) {
+                    $this->breakIntoATinkerShell($browsers, $e);
+                }
 
                 throw $e;
             } catch (Throwable $e) {
-                if (DuskOptions::hasUI()) $this->breakIntoATinkerShell($browsers, $e);
+                if (DuskOptions::hasUI()) {
+                    $this->breakIntoATinkerShell($browsers, $e);
+                }
 
                 throw $e;
             }

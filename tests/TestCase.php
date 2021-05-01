@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Tests;
 
 use Daguilarm\LivewireCombobox\LivewireComboboxServiceProvider;
-use Daguilarm\LivewireCombobox\Tests\DuskElements;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
