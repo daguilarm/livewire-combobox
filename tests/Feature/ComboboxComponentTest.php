@@ -2,8 +2,8 @@
 
 namespace Daguilarm\LivewireCombobox\Tests\Feature;
 
-use Daguilarm\LivewireCombobox\Tests\TestCase;
 use Daguilarm\LivewireCombobox\Tests\App\Http\Livewire\ComboboxSelects;
+use Daguilarm\LivewireCombobox\Tests\TestCase;
 
 // test --filter=ComboboxComponentTest
 class ComboboxComponentTest extends TestCase

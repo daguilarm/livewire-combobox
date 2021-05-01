@@ -75,4 +75,9 @@ class TestCase extends BaseTestCase
             'root' => __DIR__.'/downloads',
         ]);
     }
+
+    protected function resolveApplicationHttpKernel($app)
+    {
+        $app->singleton('Illuminate\Contracts\Http\Kernel', '\Daguilarm\LivewireCombobox\Tests\HttpKernel');
+    }
 }
