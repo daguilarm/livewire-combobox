@@ -14,6 +14,7 @@
                 </label>
                 <select
                     id="{{ Combobox::value($element, 'uriKey') }}"
+                    dusk="{{ Str::of(Combobox::value($element, 'uriKey'))->replace('-', '_') }}"
                     name="{{ $element?->label  ?? $element['uriKey'] }}"
                     class="{{ Combobox::value($element, 'fieldCss') ?? 'bg-white w-full relative border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 mt-1 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' }}"
                     wire:model.defer="comboboxValues.{{ Combobox::value($element, 'uriKey') }}"
@@ -26,12 +27,12 @@
 
                     @foreach(Combobox::value($element, 'options') as $key => $value)
                         <option
-                            value="{{ $value ?? Combobox::value($element, 'defaultValue') }}"
-                            @if(is_array($element) && $element['defaultValue'] == $value)
+                            value="{{ $key ?? Combobox::value($element, 'defaultValue') }}"
+                            @if(is_array($element) && $element['defaultValue'] == $key)
                                 selected
                             @endif
                         >
-                            {{ $key }}
+                            {{ $value }}
                         </option>
                     @endforeach
                 </select>

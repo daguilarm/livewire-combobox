@@ -49,7 +49,7 @@ class ComboboxCars extends ComboboxLivewireComponent implements Combobox
                 ->uriKey('key-for-car')
                 ->options(function($model) {
                     return $model
-                        ->pluck('id', 'name')
+                        ->pluck('name', 'id')
                         ->toArray();
                 }),
             Select::make('Options for cars', Option::class)
@@ -110,14 +110,14 @@ It is used to add the values ​​that will be shown in the element **select**.
 <option value="3">Plane</option>
 ```
 
-Therefore, in the component example:
+Therefore, in the component example (will be reverse):
 
 ```php 
 // The array
 Select::make(...)
     ->options(function($model) {
         return $model
-            ->pluck('id', 'name')
+            ->pluck('name', 'id')
             ->toArray();
     })
 

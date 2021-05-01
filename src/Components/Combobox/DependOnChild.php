@@ -38,7 +38,7 @@ trait DependOnChild
         // Get the options
         $element['options'] = app($element['model'])
             ->where($element['foreignKey'], $value)
-            ->pluck($element['childTableRowLabel'], $element['childTableRowValue'])
+            ->pluck($element['childTableRowValue'], $element['childTableRowLabel'])
             ->toArray();
 
         // Clear childs. Set the max range for a child
