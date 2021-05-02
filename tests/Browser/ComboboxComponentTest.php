@@ -45,7 +45,12 @@ class ComboboxComponentTest extends TestCase
                 ->assertSourceHas('id="field-container-for-key-for-car" class="bg-green-500"')
                 ->assertSourceHas('id="label-for-key-for-car" class="text-white"')
                 // Dusk attribute
-                ->assertSourceHas('id="key-for-car" dusk="key_for_car" name="Cars" class="text-green-600"');
+                ->assertSourceHas('id="key-for-car" dusk="key_for_car" name="Cars" class="text-green-600"')
+                // Empty option is visible
+                ->assertPresent('#key-for-options')
+                // Empty option is not visible.
+                // @see Daguilarm\LivewireCombobox\Components\FieldComponent::hideOnEmpty()
+                ->assertNotPresent('#key-for-extras');
         });
     }
 }

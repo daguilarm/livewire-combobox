@@ -14,6 +14,7 @@ final class Select extends FieldComponent implements Field
 {
     public string $type = 'select';
     public bool $firstRemoved = false;
+    public bool $hideOnEmpty = false;
 
     /**
      * @var array<Daguilarm\LivewireCombobox\Contracts\Field>
@@ -40,6 +41,16 @@ final class Select extends FieldComponent implements Field
     public function firstRemoved(bool $value = true): self
     {
         $this->firstRemoved = $value;
+
+        return $this;
+    }
+
+    /**
+     * Hide the element if has not values.
+     */
+    public function hideOnEmpty(bool $value = true): self
+    {
+        $this->hideOnEmpty = $value;
 
         return $this;
     }
