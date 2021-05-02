@@ -84,6 +84,8 @@ The method `make()`, has the following structure:
 Select::make(string $label, ?string $model = null);
 ```
 
+### model()
+
 As it can be seen, the attribute `$model` is optional in the `make()` method, and it can be added using the method `model()`:
 
 ```php
