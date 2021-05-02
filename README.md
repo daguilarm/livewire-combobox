@@ -1,6 +1,6 @@
 # A dynamic selects for Laravel Livewire
 
-A Laravel Livewire multiple selects depending on each other values, with infinite levels and totally configurable.
+A Laravel Livewire multiple selects depending on each other values, with infinite levels of dependency and totally configurable.
 
 ![Package Logo](https://banners.beyondco.de/A%20Combobox%20for%20Laravel%20Livewire.png?theme=light&packageManager=composer+require&packageName=daguilarm%2Flivewire-combobox&pattern=architect&style=style_1&description=An+infinite+dynamic+selects.&md=1&showWatermark=1&fontSize=100px&images=selector)
 
