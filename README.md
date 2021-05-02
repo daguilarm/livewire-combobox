@@ -127,7 +127,7 @@ Select::make(...)
 
 ### firstRemoved()
 
-By default, each item will show one select field with a empty `option` element:
+By default, each item will show a select field with an empty `option` element:
 
 ```html 
 // Element
@@ -138,6 +138,10 @@ By default, each item will show one select field with a empty `option` element:
 ```
 
 If we want to remove it, we can add the method `firstRemoved()`.
+
+### hideOnEmpty()
+
+Dependent children are removed if they are empty, instead of showing a select with empty options.
 
 ## Child elements
 
