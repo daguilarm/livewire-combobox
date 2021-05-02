@@ -253,7 +253,7 @@ Select::make(...)
     ->class('p-4', null, 'text-lg'),
 ```
 
-The parameters order is:
+The order of the parameters is:
 
 ```php 
 class(?string $container = null, ?string $label = null, ?string $field = null)
