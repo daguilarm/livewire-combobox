@@ -1,9 +1,9 @@
 <div
-    class="{{ Combobox::value($element, 'fieldContainerCss') ?? 'px-2' }}"
     id="field-container-for-{{ Combobox::value($element, 'uriKey') }}"
+    class="{{ Combobox::value($element, 'fieldContainerCss') ?? 'px-2' }}"
 >
     <label
-        id="{{ Combobox::value($element, 'uriKey') }}-label"
+        id="label-for-{{ Combobox::value($element, 'uriKey') }}"
         class="{{ Combobox::value($element, 'labelCss') ?? 'block w-full text-sm font-medium text-gray-600' }}"
         for="{{ Combobox::value($element, 'uriKey') }}"
     >

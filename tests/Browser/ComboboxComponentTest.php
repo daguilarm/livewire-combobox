@@ -7,12 +7,12 @@ use Daguilarm\LivewireCombobox\Tests\TestCase;
 // test --filter=ComboboxComponentTest
 class ComboboxComponentTest extends TestCase
 {
-    // test --filter=test_combobox_actions
-    public function test_combobox_actions(): void
+    // test --filter=test_combobox_selection
+    public function test_combobox_selection(): void
     {
         $this->browse(function ($browser) {
+            // Test simple dynamic selection
             $browser->visit('/testing')
-                // Test Combobox
                 ->assertPresent('#key-for-car')
                 ->assertSelectHasOptions('#key-for-car', [1, 2])
                 ->select('#key-for-car', 1)
@@ -31,6 +31,20 @@ class ComboboxComponentTest extends TestCase
                 ->pause(500)
                 ->assertSelectHasOptions('#key-for-options', [5, 6, 7, 8])
                 ->assertSelectHasOptions('#key-for-extras', []);
+        });
+    }
+
+    // test --filter=test_combobox_options
+    public function test_combobox_options(): void
+    {
+        $this->browse(function ($browser) {
+            // Test options
+            $browser->visit('/testing/options')
+                // Testing custom css
+                // @see Daguilarm\LivewireCombobox\Components\FieldComponent::class()
+                ->assertSourceHas('id="field-container-for-key-for-car" class="bg-green-500"')
+                ->assertSourceHas('id="label-for-key-for-car" class="text-white"')
+                ->assertSourceHas('id="key-for-car" class="text-green-600"');
         });
     }
 }

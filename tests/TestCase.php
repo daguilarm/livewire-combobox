@@ -54,7 +54,7 @@ class TestCase extends BaseTestCase
                 return view('select');
             });
             Route::get('/testing/options', function () {
-                return view('select-options');
+                return view('options');
             });
         });
     }
