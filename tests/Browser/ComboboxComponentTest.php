@@ -51,6 +51,21 @@ class ComboboxComponentTest extends TestCase
                 // Empty option is not visible.
                 // @see Daguilarm\LivewireCombobox\Components\FieldComponent::hideOnEmpty()
                 ->assertNotPresent('#key-for-extras');
+            // Test options with selection
+            $browser->visit('/testing/options')
+                // Testing selection
+                ->select('#key-for-car', 1)
+                ->assertSelected('#key-for-car', 1)
+                // Verify is not present
+                ->assertNotPresent('#key-for-extras')
+                ->pause(500)
+                ->select('#key-for-options', 1)
+                ->assertSelected('#key-for-options', 1)
+                ->pause(500)
+                // Verify is present
+                ->assertPresent('#key-for-extras')
+                ->select('#key-for-extras', 1)
+                ->assertSelected('#key-for-extras', 1);
         });
     }
 }
