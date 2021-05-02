@@ -42,16 +42,22 @@ class FieldComponentTest extends TestCase
     // test --filter=test_field_select_with_callback_has_the_correct_attributes
     public function test_field_select_with_callback_has_the_correct_attributes(): void
     {
-        $model = Car::pluck('id', 'name')->toArray();
+        $model = Car::pluck('name', 'id')->toArray();
+        $arrayModel = [
+            1 => 'Renault',
+            2 => 'Ford',
+        ];
         $select = Select::make('Cars', Car::class)
                 ->options(function ($model) {
                     return $model
-                        ->pluck('id', 'name')
+                        ->pluck('name', 'id')
                         ->toArray();
                 });
 
         // Testing the callback
         $this->assertEquals($select->options, $model);
+        // Testing array vs elequent
+        $this->assertEquals($arrayModel, $model);
     }
 
     // test --filter=test_field_select_with_dependOn_has_the_correct_attributes
