@@ -12,6 +12,6 @@ class Car extends Model
 
     protected $rows = [
         ['id' => 1, 'name' => 'Renault'],
-        ['id' => 2, 'name' => 'ford'],
+        ['id' => 2, 'name' => 'Ford'],
     ];
 }
