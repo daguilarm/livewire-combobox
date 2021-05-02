@@ -40,11 +40,12 @@ class ComboboxComponentTest extends TestCase
         $this->browse(function ($browser) {
             // Test options
             $browser->visit('/testing/options')
-                // Testing custom css
+                // Testing custom css and attributes
                 // @see Daguilarm\LivewireCombobox\Components\FieldComponent::class()
                 ->assertSourceHas('id="field-container-for-key-for-car" class="bg-green-500"')
                 ->assertSourceHas('id="label-for-key-for-car" class="text-white"')
-                ->assertSourceHas('id="key-for-car" class="text-green-600"');
+                // Dusk attribute
+                ->assertSourceHas('id="key-for-car" dusk="key_for_car" name="Cars" class="text-green-600"');
         });
     }
 }
