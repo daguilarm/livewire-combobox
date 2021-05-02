@@ -8,6 +8,7 @@ use Daguilarm\LivewireCombobox\Components\ComboboxLivewireComponent;
 use Daguilarm\LivewireCombobox\Components\Fields\Select;
 use Daguilarm\LivewireCombobox\Contracts\Combobox;
 use Daguilarm\LivewireCombobox\Tests\App\Models\Car;
+use Daguilarm\LivewireCombobox\Tests\App\Models\Extra;
 use Daguilarm\LivewireCombobox\Tests\App\Models\Option;
 
 class ComboboxSelects extends ComboboxLivewireComponent implements Combobox
