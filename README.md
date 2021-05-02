@@ -1,13 +1,13 @@
-# A dynamic selects for Laravel Livewire
-
-A Laravel Livewire multiple selects depending on each other values, with infinite levels of dependency and totally configurable.
-
 ![Package Logo](https://banners.beyondco.de/A%20Combobox%20for%20Laravel%20Livewire.png?theme=light&packageManager=composer+require&packageName=daguilarm%2Flivewire-combobox&pattern=architect&style=style_1&description=An+infinite+dynamic+selects.&md=1&showWatermark=1&fontSize=100px&images=selector)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/daguilarm/livewire-combobox.svg?style=flat-square)](https://packagist.org/packages/daguilarm/livewire-combobox)
 [![StyleCI](https://styleci.io/repos/363116482/shield?style=plastic)](https://github.styleci.io/repos/363116482)
 ![GitHub last commit](https://img.shields.io/github/last-commit/daguilarm/livewire-combobox)
 [![Total Downloads](https://img.shields.io/packagist/dt/daguilarm/livewire-combobox.svg?style=flat-square)](https://packagist.org/packages/daguilarm/livewire-combobox)
+
+# Livewire Combobox: A dynamic selects for Laravel Livewire
+
+A Laravel Livewire multiple selects depending on each other values, with infinite levels of dependency and totally configurable.
 
 ## Requirements
 
