@@ -92,7 +92,7 @@ As it can be seen, the attribute `$model` is optional in the `make()` method, an
 Select::make('My label')->model(User::class);
 ```
 
-    Defining the model is mandatory, but it can be done in the two ways described.
+> :warning: Defining the model is mandatory, but it can be done in the two ways described.
 
 ### uriKey()
 
