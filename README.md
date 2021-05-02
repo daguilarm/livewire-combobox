@@ -61,6 +61,7 @@ class ComboboxCars extends ComboboxLivewireComponent implements Combobox
                 ->selectRows('id', 'option'),
             Select::make('Extras for cars', Extra::class)
                 ->firstRemoved()
+                ->hideOnEmpty()
                 ->uriKey('key-for-extras')
                 ->dependOn('key-for-options')
                 ->foreignKey('option_id')
