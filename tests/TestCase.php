@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Tests;
 
 use Daguilarm\LivewireCombobox\LivewireComboboxServiceProvider;
+use Daguilarm\LivewireCombobox\Tests\App\Http\Livewire\ComboboxOptions;
+use Daguilarm\LivewireCombobox\Tests\App\Http\Livewire\ComboboxSelects;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 
@@ -32,16 +35,26 @@ class TestCase extends BaseTestCase
         $this->tweakApplication(function () {
             // Enable debug
             config()->set('app.debug', true);
+
             // Configure the view folder
             app('config')->set('view.paths', [
                 __DIR__.'/../tests/Browser/resources/views',
                 resource_path('views'),
             ]);
+
             // CSRF hack
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
+
+            // Components for testing
+            Livewire::component('combobox-selects', ComboboxSelects::class);
+            Livewire::component('combobox-options', ComboboxOptions::class);
+
             //Routes for testing
             Route::get('/testing', function () {
                 return view('select');
+            });
+            Route::get('/testing/options', function () {
+                return view('select-options');
             });
         });
     }
