@@ -76,7 +76,7 @@ The **package** supports infinite dependent elements. The method `elements()` sh
 
 Let's see how the class works `Select::class` and its methods:
 
-### make()
+#### make()
 
 The method `make()`, has the following structure:
 
@@ -84,7 +84,7 @@ The method `make()`, has the following structure:
 Select::make(string $label, ?string $model = null);
 ```
 
-### model()
+#### model()
 
 As it can be seen, the attribute `$model` is optional in the `make()` method, and it can be added using the method `model()`:
 
@@ -94,11 +94,53 @@ Select::make('My label')->model(User::class);
 
 > :warning: Defining the model is mandatory, but it can be done in the two ways described.
 
-### uriKey()
+#### uriKey()
 
 This method is mandatory, it is used to define a unique key for the element.
 
-### options()
+#### hideOnEmpty()
+
+Dependent children are removed if they are empty, instead of showing an empty field.
+
+## Child elements
+
+These elements have their own methods, apart from those described above. 
+These child elements do not need the method `options()`, although it can be added if desired. The child specific methods are described below:
+
+### dependOn()
+
+With this method we define the parent element on which our child element depends. We must use the `uriKey` from the parent element. The basic structure of the method is:
+
+```php
+dependOn(?string $parentUriKey = null, ?string $foreignKey = null)
+```
+
+As can be seen, it admits a second value which is the *foreing key* that links the two models: **Parent** and **Child**. This second field can also be added in two ways:
+
+```php 
+// Option 1
+Select::make(...)
+    ->dependOn('key-for-options', 'option_id');
+
+// Option 2
+Select::make(...)
+    ->dependOn('key-for-options')
+    ->foreignKey('option_id');
+```
+
+### selectRows()
+
+It is used to select the fields from the table that we want to load in the child element.
+
+## Field Types 
+
+At the moment, the package support the folowing field types:
+
+### Select field
+
+Estos campos disponen de los siguientes métodos:
+
+#### options()
 
 It is used to add the values ​​that will be shown in the element **select**. We can directly add a `array` with the values, or define a `callback`. The two values ​​returned by the `array`: key and value, are shown as follows in the **Blade** template:
 
@@ -131,53 +173,23 @@ Select::make(...)
 <option value="id">name</option>
 ```
 
-### firstRemoved()
+#### firstRemoved()
 
 By default, each item will show a select field with an empty `option` element:
 
 ```html 
 // Element
 <select>
-    <option></option>
+    <option value=""></option>
     ...
 </select>
 ```
 
 If we want to remove it, we can add the method `firstRemoved()`.
 
-### hideOnEmpty()
+### Search field 
 
-Dependent children are removed if they are empty, instead of showing a select with empty options.
-
-## Child elements
-
-These elements have their own methods, apart from those described above. 
-These child elements do not need the method `options()`, although it can be added if desired. The child specific methods are described below:
-
-### dependOn()
-
-With this method we define the parent element on which our child element depends. We must use the `uriKey` from the parent element. The basic structure of the method is:
-
-```php
-dependOn(?string $parentUriKey = null, ?string $foreignKey = null)
-```
-
-As can be seen, it admits a second value which is the *foreing key* that links the two models: **Parent** and **Child**. This second field can also be added in two ways:
-
-```php 
-// Option 1
-Select::make(...)
-    ->dependOn('key-for-options', 'option_id');
-
-// Option 2
-Select::make(...)
-    ->dependOn('key-for-options')
-    ->foreignKey('option_id');
-```
-
-### selectRows()
-
-It is used to select the fields from the table that we want to load in the child element.
+comming soon... 
 
 ## Customize the display of elements
 
