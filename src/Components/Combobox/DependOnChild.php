@@ -32,8 +32,8 @@ trait DependOnChild
         // Get the parent element value
         $value = $this->comboboxValues[$uriKey];
 
-        // Set the default value
-        $element['defaultValue'] = $value;
+        // The childs elements don't have default values
+        $element['defaultValue'] = '';
 
         // Get the options
         $element['options'] = app($element['model'])
