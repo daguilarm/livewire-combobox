@@ -144,7 +144,7 @@ At the moment, the package support the folowing field types:
 
 ### Select field
 
-Estos campos disponen de los siguientes métodos:
+These fields have the following methods:
 
 #### options()
 
