@@ -27,7 +27,7 @@ trait DependOn
 
         return collect($this->elements)
             // Set the parent element
-            ->filter(function ($element) use ($uriKey) {
+            ->filter(function ($element) {
                 return ! Combobox::value($element, 'parentUriKey')
                     ? $this->resolvePositionForChildElements($element)
                     : $element;
@@ -107,7 +107,7 @@ trait DependOn
         // Parent element
         $parent = $this->elements[0]['uriKey'];
 
-        if (!$this->comboboxValues[$parent]) {
+        if (! $this->comboboxValues[$parent]) {
             // Reset the values
             $this->comboboxValues = [];
             $this->comboboxValues[$parent] = [];
