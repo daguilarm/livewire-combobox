@@ -34,7 +34,7 @@ abstract class FieldComponent
     public array $comboboxValues = [];
 
     /**
-     * Filter maker.
+     * Field maker.
      */
     public static function make(string $label, ?string $model = null): FieldComponent
     {

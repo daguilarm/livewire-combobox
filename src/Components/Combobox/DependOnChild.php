@@ -42,7 +42,7 @@ trait DependOnChild
             ->toArray();
 
         // Clear childs. Set the max range for a child
-        $this->elementPositionDelete = $this->elementPosition + $this->maxRangeForWildElements;
+        $this->elementPositionDelete = $this->elementPosition + $this->maxRangeForChildElements;
 
         return $element;
     }

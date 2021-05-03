@@ -13,7 +13,7 @@ trait DependOn
 {
     public int $elementPosition = 0;
     public int $elementPositionDelete = 0;
-    public int $maxRangeForWildElements = 2;
+    public int $maxRangeForChildElements = 2;
 
     /**
      * Resolve all the elements.
