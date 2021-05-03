@@ -142,7 +142,7 @@ It is used to select the fields from the table that we want to load in the child
 
 At the moment, the package support the folowing field types:
 
-### Select field
+### Select field
 
 Estos campos disponen de los siguientes métodos:
 
