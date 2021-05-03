@@ -11,9 +11,9 @@ use Daguilarm\LivewireCombobox\Facades\Combobox;
  */
 trait DependOn
 {
-    public int $elementPosition = 0;
-    public int $elementPositionDelete = 0;
-    public int $maxRangeForChildElements = 2;
+    protected int $elementPosition = 0;
+    protected int $elementPositionDelete = 0;
+    protected int $maxRangeForChildElements = 2;
 
     /**
      * Resolve all the elements.
@@ -22,11 +22,14 @@ trait DependOn
      */
     public function resolveElements(string $uriKey): array
     {
+        // Reset all the elements if parent element is empty
+        $this->resetValuesIfParentIsEmpty();
+
         return collect($this->elements)
             // Set the parent element
-            ->filter(function ($element) {
+            ->filter(function ($element) use ($uriKey) {
                 return ! Combobox::value($element, 'parentUriKey')
-                    ? $this->resolveParentElement($element)
+                    ? $this->resolvePositionForChildElements($element)
                     : $element;
             })
             ->map(function ($element) use ($uriKey) {
@@ -51,13 +54,13 @@ trait DependOn
     }
 
     /**
-     * Resolve the parent element.
+     * Resolve the parent element position for the childs.
      *
      * @param array<int | float | string | null> $element
      *
      * @return array<int | float | string | null>
      */
-    private function resolveParentElement(array $element): array
+    private function resolvePositionForChildElements(array $element): array
     {
         // Add a new level for the elements
         $this->elementPosition++;
@@ -94,5 +97,20 @@ trait DependOn
         $this->elementPositionDelete = 0;
 
         return $element;
+    }
+
+    /**
+     * Reset the all the elements if parent element is empty.
+     */
+    private function resetValuesIfParentIsEmpty()
+    {
+        // Parent element
+        $parent = $this->elements[0]['uriKey'];
+
+        if (!$this->comboboxValues[$parent]) {
+            // Reset the values
+            $this->comboboxValues = [];
+            $this->comboboxValues[$parent] = [];
+        }
     }
 }

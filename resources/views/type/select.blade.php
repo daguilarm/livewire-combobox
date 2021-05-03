@@ -35,7 +35,7 @@
                         selected
                     @endif --}}
                     {{-- Selected option for childs --}}
-                    @if(is_array($element) && $element['defaultValue'] == $key)
+                    @if(is_object($element) && $element->defaultValue === $key)
                         selected
                     @endif
                 >
