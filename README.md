@@ -117,7 +117,11 @@ With this method we define the parent element on which our child element depends
 dependOn(?string $parentUriKey = null, ?string $foreignKey = null)
 ```
 
-As can be seen, it admits a second value which is the *foreing key* that links the two models: **Parent** and **Child**. This second field can also be added in two ways:
+As can be seen, it admits a second value which is the *foreing key* that links the two models: **Parent** and **Child**. 
+
+### foreignKey()
+
+This second field can also be added in two ways:
 
 ```php 
 // Option 1
