@@ -148,7 +148,7 @@ These fields have the following methods:
 
 #### options()
 
-It is used to add the values ​​that will be shown in the element **select**. We can directly add a `array` with the values, or define a `callback`. The two values ​​returned by the `array`: key and value, are shown as follows in the **Blade** template:
+It is used to add the values ​​that will be shown in the element **select**. We can directly add an `array` with the values, or define a `callback`. The two values ​​returned by the `array`: key and value, are shown as follows in the **Blade** template:
 
 ```php 
 // The array
