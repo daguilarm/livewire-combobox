@@ -20,7 +20,7 @@ trait DependOn
      *
      * @return array<int | float | string | null>
      */
-    public function resolveElements(string $uriKey): array
+    protected function resolveElements(string $uriKey): array
     {
         // Reset all the elements if parent element is empty
         $this->resetValuesIfParentIsEmpty();
