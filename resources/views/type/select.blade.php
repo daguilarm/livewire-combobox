@@ -23,7 +23,7 @@
         >
             {{-- Show or hide empty first element --}}
             @unless (Combobox::value($element, 'firstRemoved'))
-                <option></option>
+                <option value=""></option>
             @endunless
 
             {{-- Options --}}
