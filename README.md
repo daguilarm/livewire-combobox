@@ -24,7 +24,9 @@ You can install the package via composer:
 
     composer require daguilarm/livewire-combobox
 
-## General methods
+# Documentation
+
+## General Methods
 
 The first thing you have to do is create a component in your folder **Livewire**. Below you can see an example using three selects:
 
