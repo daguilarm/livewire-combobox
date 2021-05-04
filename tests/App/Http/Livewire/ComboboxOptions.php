@@ -40,7 +40,8 @@ class ComboboxOptions extends ComboboxLivewireComponent implements Combobox
                 ->uriKey('key-for-extras')
                 ->dependOn('key-for-options')
                 ->foreignKey('option_id')
-                ->selectRows('id', 'extra'),
+                ->selectRows('id', 'extra')
+                ->withoutResponse(),
         ];
     }
 }

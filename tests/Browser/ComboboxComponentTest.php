@@ -17,18 +17,21 @@ class ComboboxComponentTest extends TestCase
                 ->assertSelectHasOptions('#key-for-car', [1, 2])
                 ->select('#key-for-car', 1)
                 ->assertSelected('#key-for-car', 1)
-                ->pause(500)
+                // Loading
+                ->waitUntilMissing('#livewire-combobox-loading')
                 ->assertSelectHasOptions('#key-for-options', [1, 2, 3, 4])
                 ->select('#key-for-options', 1)
                 ->assertSelected('#key-for-options', 1)
-                ->pause(500)
+                // Loading
+                ->waitUntilMissing('#livewire-combobox-loading')
                 ->assertSelectHasOptions('#key-for-extras', [1, 2])
                 ->select('#key-for-extras', 1)
                 ->assertSelected('#key-for-extras', 1)
                 // Test change value
                 ->select('#key-for-car', 2)
                 ->assertSelected('#key-for-car', 2)
-                ->pause(500)
+                // Loading
+                ->waitUntilMissing('#livewire-combobox-loading')
                 ->assertSelectHasOptions('#key-for-options', [5, 6, 7, 8])
                 ->assertSelectHasOptions('#key-for-extras', []);
         });
@@ -56,16 +59,24 @@ class ComboboxComponentTest extends TestCase
                 // Testing selection
                 ->select('#key-for-car', 1)
                 ->assertSelected('#key-for-car', 1)
+                // Has livewire
+                ->assertSourceHas('wire:model.defer="comboboxValues.key-for-car"')
                 // Verify is not present
                 ->assertNotPresent('#key-for-extras')
-                ->pause(500)
+                // Loading
+                ->waitUntilMissing('#livewire-combobox-loading')
                 ->select('#key-for-options', 1)
                 ->assertSelected('#key-for-options', 1)
-                ->pause(500)
+                // Has livewire
+                ->assertSourceHas('wire:model.defer="comboboxValues.key-for-options"')
+                // Loading
+                ->waitUntilMissing('#livewire-combobox-loading')
                 // Verify is present
                 ->assertPresent('#key-for-extras')
                 ->select('#key-for-extras', 1)
-                ->assertSelected('#key-for-extras', 1);
+                ->assertSelected('#key-for-extras', 1)
+                // Testing withoutResponse()
+                ->assertSourceMissing('wire:model.defer="comboboxValues.key-for-extras"');
         });
     }
 }
