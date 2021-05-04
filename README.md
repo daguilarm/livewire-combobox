@@ -197,6 +197,37 @@ If we want to remove it, we can add the method `firstRemoved()`.
 
 comming soon... 
 
+## Loading... 
+
+You can activate or deactivate the loading state, modifying the attribute `$loading`, in your component:
+
+```php 
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Livewire;
+
+use App\Models\Car;
+use App\Models\Extra;
+use App\Models\Option;
+use Daguilarm\LivewireCombobox\Components\ComboboxLivewireComponent;
+use Daguilarm\LivewireCombobox\Components\Fields\Select;
+use Daguilarm\LivewireCombobox\Contracts\Combobox;
+
+class ComboboxCars extends ComboboxLivewireComponent implements Combobox
+{
+    public bool $loading = false;
+
+    public function elements(): array
+    {
+        return [];
+    }
+}
+```
+
+By default it is activated (true). The template file is located at: `resources/views/vendor/livewire-combobox/loading.blade.php`.
+
 ## Customize the display of elements
 
 The package uses **TailwindCSS** so the styles must be based on it. The structure of the elements is as follows:

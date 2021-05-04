@@ -22,12 +22,14 @@ abstract class ComboboxLivewireComponent extends Component
      */
     public array $comboboxValues = [];
 
-    public string $comboboxContainerClass;
-
     /**
      * @var array<Illuminate\Support\Collection>
      */
     public array $elements;
+
+    public bool $loading = true;
+
+    public string $comboboxContainerClass;
 
     /**
      * Listeners.
