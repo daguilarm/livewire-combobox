@@ -8,10 +8,6 @@
 
     {{-- Loading --}}
     @if ($loading)
-        <div class="flex relative" wire:loading>
-            <div class="fixed">
-                @include('livewire-combobox::loading')
-            </div>
-        </div
+        @include('livewire-combobox::loading')
     @endif
 </div>
