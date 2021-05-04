@@ -68,7 +68,8 @@ class ComboboxCars extends ComboboxLivewireComponent implements Combobox
                 ->uriKey('key-for-extras')
                 ->dependOn('key-for-options')
                 ->foreignKey('option_id')
-                ->selectRows('id', 'extra'),
+                ->selectRows('id', 'extra')
+                ->withoutResponse(),
         ];
     }
 }
@@ -103,6 +104,10 @@ This method is mandatory, it is used to define a unique key for the element.
 #### hideOnEmpty()
 
 Dependent children are removed if they are empty, instead of showing an empty field.
+
+#### withoutResponse()
+
+When we want an element does not send a response to the component and works only as a form field, that is, remove all the Laravel Livewire code from it. Very useful when it comes to the last selectable element and we don't want to send a request to the server.
 
 ## Child elements
 

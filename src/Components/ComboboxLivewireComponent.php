@@ -28,7 +28,6 @@ abstract class ComboboxLivewireComponent extends Component
     public array $elements;
 
     public bool $loading = true;
-
     public string $comboboxContainerClass;
 
     /**

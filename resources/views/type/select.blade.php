@@ -18,8 +18,12 @@
             dusk="{{ Str::of(Combobox::value($element, 'uriKey'))->replace('-', '_') }}"
             name="{{ $element?->label  ?? $element['uriKey'] }}"
             class="{{ Combobox::value($element, 'fieldCss') ?? 'bg-white w-full relative border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 mt-1 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' }}"
-            wire:model.defer="comboboxValues.{{ Combobox::value($element, 'uriKey') }}"
-            wire:change="$emit('dependOn', '{{ Combobox::value($element, 'uriKey') }}')"
+
+            {{-- Last element or element without Livewire Response --}}
+            @unless (Combobox::value($element, 'withoutResponse'))
+                wire:model.defer="comboboxValues.{{ Combobox::value($element, 'uriKey') }}"
+                wire:change="$emit('dependOn', '{{ Combobox::value($element, 'uriKey') }}')"
+            @endunless
         >
             {{-- Show or hide empty first element --}}
             @unless (Combobox::value($element, 'firstRemoved'))

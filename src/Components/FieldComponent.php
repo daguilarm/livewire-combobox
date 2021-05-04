@@ -25,6 +25,7 @@ abstract class FieldComponent
     public ?string $parentUriKey = null;
     public int $position = 0;
     public int | float | string | null $defaultValue = null;
+    public bool $withoutResponse = false;
 
     /**
      * Combobox elements values.
@@ -104,6 +105,16 @@ abstract class FieldComponent
     public function uriKey(string $value): self
     {
         $this->uriKey = $value;
+
+        return $this;
+    }
+
+    /**
+     * Element without livewire response.
+     */
+    public function withoutResponse(): self
+    {
+        $this->withoutResponse = true;
 
         return $this;
     }
