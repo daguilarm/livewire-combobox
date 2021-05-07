@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Tests;
 
 use Psy\Command\Command;
-use Psy\Output\ShellOutput;
 use Psy\Formatter\CodeFormatter;
+use Psy\Output\ShellOutput;
 use ReflectionClass;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
