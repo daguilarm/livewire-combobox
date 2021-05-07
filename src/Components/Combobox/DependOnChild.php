@@ -32,7 +32,15 @@ trait DependOnChild
         // Get the parent element value
         $value = $this->comboboxValues[$uriKey];
 
-        // Get the options
+        // Get the options if there is no array with values
+        // And type!!!!
+        // if (! $element['options']) {
+        //     $element['options'] = app($element['model'])
+        //         ->where($element['foreignKey'], $value)
+        //         ->pluck($element['childTableRowValue'], $element['childTableRowLabel'])
+        //         ->toArray();
+        // }
+
         $element['options'] = app($element['model'])
             ->where($element['foreignKey'], $value)
             ->pluck($element['childTableRowValue'], $element['childTableRowLabel'])
@@ -40,6 +48,41 @@ trait DependOnChild
 
         // Clear childs. Set the max range for a child
         $this->elementPositionDelete = $this->elementPosition + $this->maxRangeForChildElements;
+
+        return $element;
+    }
+
+    /**
+     * Update the child element if it has a parent element.
+     *
+     * @param array<int | float | string | null> $element
+     *
+     * @return array<int | float | string | null>
+     */
+    private function updateChildElementIfHasParent(array $element, string $uriKey): array
+    {
+        if ($this->childElementHasParent($element, $uriKey)) {
+            // Get child element from parent
+            $element = $this->getChildElementFromParent($element, $uriKey);
+
+            // Clear childs if they are out of range
+            $this->elementPositionDelete = $this->elementPosition + 2;
+        }
+
+        return $element;
+    }
+
+    /**
+     * Resolve the parent element position for the childs.
+     *
+     * @param array<int | float | string | null> $element
+     *
+     * @return array<int | float | string | null>
+     */
+    private function resolvePositionForChildElements(array $element): array
+    {
+        // Add a new level for the elements
+        $this->elementPosition++;
 
         return $element;
     }

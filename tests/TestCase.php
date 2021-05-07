@@ -10,6 +10,7 @@ use Daguilarm\LivewireCombobox\Tests\App\Http\Livewire\ComboboxSelects;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
+use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 
 /**
@@ -60,6 +61,15 @@ class TestCase extends BaseTestCase
     }
 
     /**
+     * Setup environment.
+     */
+    protected function getEnvironmentSetUp($app)
+    {
+        // Setup the application
+        $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
+    }
+
+    /**
      * Load the Service Providers.
      */
     protected function getPackageProviders($app)
@@ -68,15 +78,6 @@ class TestCase extends BaseTestCase
             LivewireComboboxServiceProvider::class,
             LivewireServiceProvider::class,
         ];
-    }
-
-    /**
-     * Setup environment.
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        // Setup the application
-        $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
     }
 
     /**

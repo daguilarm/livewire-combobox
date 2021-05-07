@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Daguilarm\LivewireCombobox\Components\Combobox;
 
 use Daguilarm\LivewireCombobox\Facades\Combobox;
+use Illuminate\Support\Collection;
 
 /**
  * Class Select.
@@ -25,28 +26,17 @@ trait DependOn
         // Reset all the elements if parent element is empty
         $this->resetValuesIfParentIsEmpty();
 
-        return collect($this->elements)
-            // Set the parent element
-            ->filter(function ($element) {
-                return ! Combobox::value($element, 'parentUriKey')
-                    ? $this->resolvePositionForChildElements($element)
-                    : $element;
-            })
+        return $this->getElements()
             ->map(function ($element) use ($uriKey) {
-                // Reset the elements out of the delete range
+                // Reset all the elements out of range
                 if ($this->resolveElementPosition()) {
                     return $this->deleteElementsOutOfRange($element);
                 }
 
-                // Update childs if has a parent
-                if ($this->childElementHasParent($element, $uriKey)) {
-                    // Get child element from parent
-                    $element = $this->getChildElementFromParent($element, $uriKey);
+                // Update child element if it has a parent
+                $element = $this->updateChildElementIfHasParent($element, $uriKey);
 
-                    // Clear childs if they are out of range
-                    $this->elementPositionDelete = $this->elementPosition + 2;
-                }
-
+                // Resolve the child element
                 return $this->resolveChildElement($element);
             })
             ->filter()
@@ -54,18 +44,21 @@ trait DependOn
     }
 
     /**
-     * Resolve the parent element position for the childs.
-     *
-     * @param array<int | float | string | null> $element
-     *
-     * @return array<int | float | string | null>
+     * Get all the elements.
      */
-    private function resolvePositionForChildElements(array $element): array
+    private function getElements(): Collection
     {
-        // Add a new level for the elements
-        $this->elementPosition++;
+        return collect($this->elements)
+            // Get the elements
+            ->filter(function ($element) {
+                // Parent element
+                if (Combobox::value($element, 'parentUriKey')) {
+                    return $element;
+                }
 
-        return $element;
+                // Child element
+                return $this->resolvePositionForChildElements($element);
+            });
     }
 
     /**
@@ -102,7 +95,7 @@ trait DependOn
     /**
      * Reset the all the elements if parent element is empty.
      */
-    private function resetValuesIfParentIsEmpty()
+    private function resetValuesIfParentIsEmpty(): void
     {
         // Parent element
         $parent = $this->elements[0]['uriKey'];
