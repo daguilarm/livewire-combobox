@@ -43,11 +43,11 @@ class DuskCommand extends Command
             'line' => $line,
         ];
 
-        $num       = 2;
-        $lineNum   = $info['line'];
+        $num = 2;
+        $lineNum = $info['line'];
         $startLine = max($lineNum - $num, 1);
-        $endLine   = $lineNum + $num;
-        $code      = file_get_contents($info['file']);
+        $endLine = $lineNum + $num;
+        $code = file_get_contents($info['file']);
 
         if ($output instanceof ShellOutput) {
             $output->startPaging();
@@ -72,8 +72,8 @@ class DuskCommand extends Command
             return $file;
         }
 
-        $cwd = rtrim($cwd, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        $cwd = rtrim($cwd, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
 
-        return preg_replace('/^' . preg_quote($cwd, '/') . '/', '', $file);
+        return preg_replace('/^'.preg_quote($cwd, '/').'/', '', $file);
     }
 }
