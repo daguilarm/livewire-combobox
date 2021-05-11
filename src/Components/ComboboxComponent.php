@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Daguilarm\LivewireCombobox\Components;
 
-use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -67,15 +66,17 @@ abstract class ComboboxComponent extends Component
     public function dependOn(string $parentUriKey): void
     {
         $this->currentUriKey = $parentUriKey;
-        $this->elements = $this->resolveElements($parentUriKey, $this->elements);
+        $this->elements = $this->resolveElements($this->elements);
     }
 
     /**
      * Resolve all the elements.
      *
+     * @param array<object> $elements
+     *
      * @return array<int | float | string | null>
      */
-    private function resolveElements(string $parentUriKey, array $elements): array
+    private function resolveElements(array $elements): array
     {
         // Reset all the elements if parent element is empty
         $this->resetValuesIfParentIsEmpty();
@@ -85,7 +86,7 @@ abstract class ComboboxComponent extends Component
 
         // Resolve the child element
         return collect($elements)
-            ->map(function ($element) use ($parentUriKey) {
+            ->map(function ($element) {
                 return $this->resolveChildElements($element);
             })
             ->filter()
@@ -103,7 +104,7 @@ abstract class ComboboxComponent extends Component
             : [];
 
         // If is the parent element
-        if ( ! $parentValue) {
+        if (! $parentValue) {
             return $element;
         }
 
@@ -146,7 +147,7 @@ abstract class ComboboxComponent extends Component
     /**
      * Get the current loop position.
      */
-    private function getPosition()
+    private function getPosition(): int
     {
         return (int) array_search(
             $this->currentUriKey,

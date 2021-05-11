@@ -9,6 +9,9 @@ namespace Daguilarm\LivewireCombobox\Components;
  */
 trait FieldGetters
 {
+    /**
+     * @return array<object>
+     */
     public function getOptions(): array
     {
         return $this->options;
@@ -79,12 +82,12 @@ trait FieldGetters
         return $this->parentUriKey;
     }
 
-    public function getChildTableRowLabel()
+    public function getChildTableRowLabel(): string
     {
         return $this->childTableRowLabel ?? '';
     }
 
-    public function getChildTableRowValue()
+    public function getChildTableRowValue(): string
     {
         return $this->childTableRowValue ?? '';
     }

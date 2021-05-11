@@ -75,7 +75,7 @@ abstract class FieldComponent
     /**
      * Disable field if it is empty.
      */
-    public function disabledOnEmpty(bool $value = true)
+    public function disabledOnEmpty(bool $value = true): void
     {
         $this->disabledOnEmpty = $value;
     }
