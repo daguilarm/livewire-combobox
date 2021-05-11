@@ -84,7 +84,7 @@ abstract class ComboboxComponent extends Component
         // Update elements on event (change)
         $this->updateValues();
 
-        // Resolve the child element
+        // Resolve the child elements
         return collect($elements)
             ->map(function ($element) {
                 return $this->resolveChildElements($element);
@@ -118,19 +118,8 @@ abstract class ComboboxComponent extends Component
     }
 
     /**
-     * Reset the all the elements if parent element is empty.
-     */
-    private function updateValues(): void
-    {
-        // Get current position in the array and set the limit
-        $limit = $this->getPosition() + 1;
-
-        // Update the values
-        $this->comboboxValues = $this->getComboboxValues($limit);
-    }
-
-    /**
-     * Reset the all the elements if parent element is empty.
+     * Reset all the elements if parent element is empty.
+     * When you change the first element.
      */
     private function resetValuesIfParentIsEmpty(): void
     {
@@ -142,6 +131,19 @@ abstract class ComboboxComponent extends Component
             $this->comboboxValues = [];
             $this->comboboxValues[$parent] = [];
         }
+    }
+
+    /**
+     * Reset the all the elements if parent element is empty.
+     */
+    private function updateValues(): void
+    {
+        // Get current position in the array and set the limit
+        // of the visible elements (current + 1)
+        $limit = $this->getPosition() + 1;
+
+        // Update the values
+        $this->comboboxValues = $this->getComboboxValues($limit);
     }
 
     /**
