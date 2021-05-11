@@ -9,23 +9,9 @@ namespace Daguilarm\LivewireCombobox\Components;
  */
 abstract class FieldComponent
 {
-    // Css values
-    public ?string $fieldCss = null;
-    public ?string $fieldContainerCss = null;
-    public ?string $labelCss = null;
+    use FieldGetters;
 
-    // Base values
-    public string $label;
-    public string $childTableRowLabel;
-    public string $childTableRowValue;
-    public string $type;
-    public string $uriKey;
-    public ?string $model;
-    public ?string $foreignKey = null;
-    public ?string $parentUriKey = null;
     public int $position = 0;
-    public int | float | string | null $defaultValue = null;
-    public bool $withoutResponse = false;
 
     /**
      * Combobox elements values.
@@ -33,6 +19,24 @@ abstract class FieldComponent
      * @var array<string>
      */
     public array $comboboxValues = [];
+
+    // Css values
+    protected ?string $fieldCss = null;
+    protected ?string $fieldContainerCss = null;
+    protected ?string $fieldLabelCss = null;
+
+    // Base values
+    protected string $label;
+    protected string $childTableRowLabel;
+    protected string $childTableRowValue;
+    protected string $type;
+    protected string $uriKey;
+    protected ?string $model;
+    protected ?string $foreignKey = null;
+    protected ?string $parentUriKey = null;
+    protected int | float | string | null $defaultValue = null;
+    protected bool $withoutResponse = false;
+    protected bool $disabledOnEmpty = false;
 
     /**
      * Field maker.
@@ -48,7 +52,7 @@ abstract class FieldComponent
     public function class(?string $container = null, ?string $label = null, ?string $field = null): self
     {
         $this->fieldContainerCss = $container;
-        $this->labelCss = $label;
+        $this->fieldLabelCss = $label;
         $this->fieldCss = $field;
 
         return $this;
@@ -66,6 +70,14 @@ abstract class FieldComponent
         }
 
         return $this;
+    }
+
+    /**
+     * Disable field if it is empty.
+     */
+    public function disabledOnEmpty(bool $value = true)
+    {
+        $this->disabledOnEmpty = $value;
     }
 
     /**

@@ -24,7 +24,7 @@ class ComboboxComponentTest extends TestCase
         // Testing the number of parent elements
         $totalParanetElements = collect($combobox->elements())
             ->filter(function ($element) {
-                return ! isset($element->parentUriKey);
+                return ! $element->getParentUriKey();
             })->count();
 
         $this->assertEquals($totalParanetElements, 1);

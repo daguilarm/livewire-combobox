@@ -12,14 +12,14 @@ use Daguilarm\LivewireCombobox\Contracts\Field;
  */
 final class Select extends FieldComponent implements Field
 {
-    public string $type = 'select';
-    public bool $firstRemoved = false;
-    public bool $hideOnEmpty = false;
-
     /**
      * @var array<Daguilarm\LivewireCombobox\Contracts\Field>
      */
     public array $options = [];
+
+    protected string $type = 'select';
+    protected bool $firstRemoved = false;
+    protected bool $hideOnEmpty = false;
 
     /**
      * @var Closure

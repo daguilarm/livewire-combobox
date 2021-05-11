@@ -33,9 +33,9 @@ class FieldComponentTest extends TestCase
                 ->options($options);
 
         // Testing the attributes
-        $this->assertEquals($select->label, 'Cars');
-        $this->assertEquals($select->model, Car::class);
-        $this->assertEquals($select->uriKey, 'key-for-car');
+        $this->assertEquals($select->getLabel(), 'Cars');
+        $this->assertEquals($select->getModel(), Car::class);
+        $this->assertEquals($select->getUriKey(), 'key-for-car');
         $this->assertEquals($select->options, $options);
     }
 
@@ -72,14 +72,14 @@ class FieldComponentTest extends TestCase
                 ->foreignKey('cars_id');
 
         // Testing the attributes
-        $this->assertEquals($select_1->label, 'Options 2');
-        $this->assertEquals($select_1->model, Option::class);
+        $this->assertEquals($select_1->getLabel(), 'Options 2');
+        $this->assertEquals($select_1->getModel(), Option::class);
         $this->assertEquals($select_1->options, []);
-        $this->assertEquals($select_1->uriKey, 'key-for-option-2');
-        $this->assertEquals($select_1->parentUriKey, 'key-for-car');
-        $this->assertEquals($select_1->foreignKey, 'cars_id');
+        $this->assertEquals($select_1->getUriKey(), 'key-for-option-2');
+        $this->assertEquals($select_1->getParentUriKey(), 'key-for-car');
+        $this->assertEquals($select_1->getForeignKey(), 'cars_id');
         // Testing foreignKey as method
-        $this->assertEquals($select_2->parentUriKey, 'key-for-car');
-        $this->assertEquals($select_2->foreignKey, 'cars_id');
+        $this->assertEquals($select_2->getParentUriKey(), 'key-for-car');
+        $this->assertEquals($select_2->getForeignKey(), 'cars_id');
     }
 }

@@ -143,6 +143,10 @@ Select::make(...)
 
 It is used to select the fields from the table that we want to load in the child element.
 
+#### disabledOnEmpty()
+
+If you want to disabled the field while it is empty...
+
 ## Field Types 
 
 At the moment, the package support the folowing field types:
@@ -196,7 +200,7 @@ By default, each item will show a select field with an empty `option` element:
 </select>
 ```
 
-If we want to remove it, we can add the method `firstRemoved()`.
+If you want to remove it, you can add the method `firstRemoved()`.
 
 ### Search field 
 
@@ -222,7 +226,7 @@ use Daguilarm\LivewireCombobox\Contracts\Combobox;
 
 class ComboboxCars extends ComboboxLivewireComponent implements Combobox
 {
-    public bool $loading = false;
+    protected bool $loading = false;
 
     public function elements(): array
     {
@@ -274,7 +278,7 @@ use Daguilarm\LivewireCombobox\Contracts\Combobox;
 
 class ComboboxCars extends ComboboxLivewireComponent implements Combobox
 {
-    public string $comboboxContainerClass = 'flex p-2 m-2 bg-gray-100';
+    protected string $containerClass = 'flex p-2 m-2 bg-gray-100';
 
     public function elements(): array
     {

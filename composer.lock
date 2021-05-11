@@ -653,16 +653,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "19a9673b833cc37770439097b381d86cd125bfe8"
+                "reference": "2651c497f005de305c7ba3f232cbd87b8c00ee8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/19a9673b833cc37770439097b381d86cd125bfe8",
-                "reference": "19a9673b833cc37770439097b381d86cd125bfe8",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/2651c497f005de305c7ba3f232cbd87b8c00ee8c",
+                "reference": "2651c497f005de305c7ba3f232cbd87b8c00ee8c",
                 "shasum": ""
             },
             "require": {
@@ -750,7 +750,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-01T19:00:49+00:00"
+            "time": "2021-05-08T16:08:00+00:00"
         },
         {
             "name": "league/flysystem",
@@ -8527,16 +8527,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "7.0.7",
+            "version": "7.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "0012151f0f0fc33709472667368c568dffda2839"
+                "reference": "48141737f9e5ed701ef8bcea2027e701b50bd932"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/0012151f0f0fc33709472667368c568dffda2839",
-                "reference": "0012151f0f0fc33709472667368c568dffda2839",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/48141737f9e5ed701ef8bcea2027e701b50bd932",
+                "reference": "48141737f9e5ed701ef8bcea2027e701b50bd932",
                 "shasum": ""
             },
             "require": {
@@ -8548,7 +8548,7 @@
             "require-dev": {
                 "phing/phing": "2.16.4",
                 "php-parallel-lint/php-parallel-lint": "1.3.0",
-                "phpstan/phpstan": "0.12.85",
+                "phpstan/phpstan": "0.12.86",
                 "phpstan/phpstan-deprecation-rules": "0.12.6",
                 "phpstan/phpstan-phpunit": "0.12.18",
                 "phpstan/phpstan-strict-rules": "0.12.9",
@@ -8572,7 +8572,7 @@
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/7.0.7"
+                "source": "https://github.com/slevomat/coding-standard/tree/7.0.8"
             },
             "funding": [
                 {
@@ -8584,7 +8584,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-02T09:58:22+00:00"
+            "time": "2021-05-10T08:51:20+00:00"
         },
         {
             "name": "spatie/backtrace",
