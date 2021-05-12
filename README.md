@@ -24,6 +24,19 @@ You can install the package via composer:
 
     composer require daguilarm/livewire-combobox
 
+Add the package styles in the `<head>` using the helper `@LivewireComboboxCss`:
+
+```html 
+<html>
+    <head>
+        @LivewireComboboxCss
+    </head>
+    <body>
+        ...
+    </body>
+</html>
+```
+
 # Documentation
 
 ## General Methods

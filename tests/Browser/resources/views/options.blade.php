@@ -3,6 +3,7 @@
     <head>
         <title>Testing</title>
         @livewireStyles
+        @LivewireComboboxCss
     </head>
     <body>
         <section>
